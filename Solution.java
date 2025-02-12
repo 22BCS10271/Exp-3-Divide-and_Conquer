@@ -1,20 +1,5 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 
-//Exp-1
+//Exp-1 (Problem #106: Construct Binary Tree from Inorder and Postorder Traversal)
 import java.util.HashMap;
 
 class Solution {
@@ -25,7 +10,7 @@ class Solution {
         inorderMap = new HashMap<>();
         postIndex = postorder.length - 1;
 
-        // Store inorder indices in HashMap for O(1) lookups
+       
         for (int i = 0; i < inorder.length; i++) {
             inorderMap.put(inorder[i], i);
         }
@@ -36,14 +21,14 @@ class Solution {
     private TreeNode buildTreeHelper(int[] postorder, int left, int right) {
         if (left > right) return null;
 
-        // Get the root value from postorder and decrement the postIndex
+
         int rootValue = postorder[postIndex--];
         TreeNode root = new TreeNode(rootValue);
 
-        // Get inorder index of the root value
+      
         int inorderIndex = inorderMap.get(rootValue);
 
-        // Build the right subtree first, then the left subtree
+        
         root.right = buildTreeHelper(postorder, inorderIndex + 1, right);
         root.left = buildTreeHelper(postorder, left, inorderIndex - 1);
 
@@ -53,24 +38,9 @@ class Solution {
 
 
 
-//Ecp-2 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 
- //Exp-2 
+
+ //Exp-2 (Problem #104: Maximum Depth of Binary Tree)
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -97,37 +67,20 @@ class Solution {
 
 
 
-
-
-//Exp-3 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
+//Exp-3 (Problem #108: Convert Sorted Array to Binary Search Tree)
 class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
         return buildBST(nums, 0, nums.length - 1);
     }
     
     private TreeNode buildBST(int[] nums, int left, int right) {
-        if (left > right) return null; // Base case: when no elements are left
+        if (left > right) return null; 
 
-        int mid = left + (right - left) / 2; // Find middle element
-        TreeNode root = new TreeNode(nums[mid]); // Create root node
+        int mid = left + (right - left) / 2;
+        TreeNode root = new TreeNode(nums[mid]); 
 
-        root.left = buildBST(nums, left, mid - 1); // Recursively build left subtree
-        root.right = buildBST(nums, mid + 1, right); // Recursively build right subtree
+        root.left = buildBST(nums, left, mid - 1); 
+        root.right = buildBST(nums, mid + 1, right); 
 
         return root;
     }
